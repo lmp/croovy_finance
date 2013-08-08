@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'croovy_finance/version'
+require 'croovy/finance/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "croovy_finance"
-  spec.version       = CroovyFinance::VERSION
+  spec.version       = Croovy::Finance::VERSION
   spec.authors       = ["Eric Wollesen"]
   spec.email         = ["eric@leadtune.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{Financial calculations used by Croovy}
+  spec.summary       = %q{APR}
+  spec.homepage      = "http://croovy.com"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
