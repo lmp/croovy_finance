@@ -7,8 +7,6 @@ class Croovy::Finance::Npv
   # See http://en.wikipedia.org/wiki/Net_present_value
   def initialize(payments)
     @payments = payments
-    @one = 1.0
-    @zero = 0.0
   end
 
   def call(rate)
@@ -16,8 +14,8 @@ class Croovy::Finance::Npv
     sum = 0.0
 
     @payments.map do |pmt|
-      pmt / ((@one + rate) ** exp).tap {exp += @one}
-    end.reduce(:+)#.tap {|x| puts "npv: #{x.to_f}"}
+      pmt / ((1.0 + rate) ** exp).tap {exp += 1.0}
+    end.reduce(:+)
   end
 
 end
