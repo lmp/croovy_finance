@@ -3,7 +3,8 @@ class Croovy::Finance::Secant
   # Calculate the root of a function
   #
   # proc: A callable object, representing the function whose root you wish to
-  #       find
+  #       find. The callable object should take a float argument representing
+  #       the current guess of the function's root.
   # r_1: Initial guess of the root
   # r_2: Second initial guess of the root
   #
