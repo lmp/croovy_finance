@@ -13,23 +13,26 @@ class Croovy::Finance::Irr
     @payments = payments
   end
 
-  def calc
-    Secant.new(@payments).solve(npv, r_1, r_2)
+  def calc(r_1=nil, r_2=nil)
+    r_1 ||= r_1_guess
+    r_2 ||= r_2_guess
+
+    Croovy::Finance::Secant.new.solve(npv, r_1, r_2)
   end
 
 
   private
 
   def npv
-    @npv ||= NetPresentValue.new(@payments)
+    @npv ||= Croovy::Finance::Npv.new(@payments)
   end
 
-  def r_1
+  def r_1_guess
     cap_a_over_abs_cap_c_0 ** (2 / @payments.size.to_f) - 1
   end
 
-  def r_2
-    (1 + r_1) ** p - 1
+  def r_2_guess
+    (1 + r_1_guess) ** p - 1
   end
 
   def cap_a_over_abs_cap_c_0
@@ -46,11 +49,11 @@ class Croovy::Finance::Irr
 
   def p
     Math.log(cap_a_over_abs_cap_c_0) /
-      Math.log(cap_a / npv_1_in.call(r_1))
+      Math.log(cap_a / npv_1_in.call(r_1_guess))
   end
 
   def npv_1_in
-    @npv_1_in ||= NetPresentValue.new(@payments[1..-1])
+    @npv_1_in ||= Croovy::Finance::Npv.new(@payments[1..-1])
   end
 
 end

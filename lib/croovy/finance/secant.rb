@@ -1,6 +1,3 @@
-require_relative "npv"
-
-
 class Croovy::Finance::Secant
 
   # Calculate the root of a function
@@ -12,8 +9,7 @@ class Croovy::Finance::Secant
   #
   # See http://en.wikipedia.org/wiki/Secant_method
   #     http://mathworld.wolfram.com/SecantMethod.html
-  def initialize(payments, convergence_difference=0.0000001)
-    @payments = payments
+  def initialize(convergence_difference=0.0000001)
     @convergence_difference = convergence_difference
   end
 

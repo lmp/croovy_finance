@@ -15,12 +15,12 @@ class Croovy::Finance::Apr
   # Unlike google spreadsheets, the sign of pmt and pv do not matter.
   def initialize(nper, pmt, pv)
     @periods = nper
-    @payment = pmt.abs * -1
-    @loan_amount = pv.abs
+    @payment = pmt.abs
+    @loan_amount = pv.abs * -1
   end
 
   def calc
-    Irr.new(payments).calc
+    Croovy::Finance::Irr.new(payments).calc
   end
 
 
