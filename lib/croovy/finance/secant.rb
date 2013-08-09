@@ -30,13 +30,10 @@ class Croovy::Finance::Secant
   def solve(proc, n_1, n_2, iterations=10_000)
     iterations.times do |x|
       n_2, n_1 = [n_1, iterate(proc, n_1, n_2)]
-      if infinite?(n_1) || converged?(n_1, n_2)
-        # $stderr.puts "breaking after #{x+1} iterations"
-        break
-      end
+      break if n_1.infinite? || converged?(n_1, n_2)
     end
 
-    infinite?(n_1) ? n_2 : n_1
+    n_1.infinite? ? n_2 : n_1
   end
 
 
@@ -44,14 +41,6 @@ class Croovy::Finance::Secant
 
   def converged?(value1, value2)
     (value1 - value2).abs < @convergence_difference
-  end
-
-  def infinite?(value)
-    @infinities ||= ["-", "+", ""].map {|s| "#{s}Infinity"}
-
-    @infinities.include?(value).tap do |i|
-      puts "%p is infinite!" % [value] if i
-    end
   end
 
 end
