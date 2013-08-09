@@ -1,0 +1,2 @@
+module Croovy::Finance
+end
