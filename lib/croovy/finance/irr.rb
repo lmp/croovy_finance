@@ -57,13 +57,3 @@ class Croovy::Finance::Irr
   end
 
 end
-
-
-def main
-  # [360, -1_410.71, 298_040, 209_817.05, 0.03928971462724],
-  payments = [-298_040, *([1_410.71] * 360)]
-
-  puts Irr.new(payments).calc * 12
-end
-
-main if __FILE__ == $0
