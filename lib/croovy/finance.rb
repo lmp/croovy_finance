@@ -1,3 +1,5 @@
+require_relative "../croovy"
+
 module Croovy::Finance
   require_relative "finance/version"
   require_relative "finance/npv"
