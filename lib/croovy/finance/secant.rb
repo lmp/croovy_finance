@@ -18,14 +18,7 @@ class Croovy::Finance::Secant
     fn_1 = proc.call(n_1)
     fn_2 = proc.call(n_2)
 
-    # $stderr.puts "n_1: %p" % [n_1]
-    # $stderr.puts "n_2: %p" % [n_2]
-    # $stderr.puts "fn_1: %p" % [fn_1]
-    # $stderr.puts "fn_2: %p" % [fn_2]
-
-    (n_1 - fn_1 * ((n_1 - n_2) / (fn_1 - fn_2))).tap do |n|
-      # $stderr.puts "n: %f" % [n]
-    end
+    (n_1 - fn_1 * ((n_1 - n_2) / (fn_1 - fn_2)))
   end
 
   def solve(proc, n_1, n_2, iterations=10_000)
