@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Eric Wollesen"]
   spec.email         = ["eric@leadtune.com"]
   spec.description   = %q{Financial calculations used by Croovy}
-  spec.summary       = %q{APR}
+  spec.summary       = %q{APR, IRR, NPV}
   spec.homepage      = "http://croovy.com"
   spec.license       = "MIT"
 
