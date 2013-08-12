@@ -36,7 +36,7 @@ class Croovy::Finance::Irr
   end
 
   def cap_a_over_abs_cap_c_0
-    cap_a / abs_c_0
+    cap_a / abs_c_0.to_f
   end
 
   def cap_a
