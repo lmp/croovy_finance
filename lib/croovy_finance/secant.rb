@@ -1,4 +1,4 @@
-class Croovy::Finance::Secant
+class CroovyFinance::Secant
 
   # Calculate the root of a function
   #

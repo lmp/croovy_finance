@@ -1,7 +1,7 @@
 require_relative "irr"
 
 
-class Croovy::Finance::Apr
+class CroovyFinance::Apr
 
   # Calculate the APR for a loan
   #
@@ -20,7 +20,7 @@ class Croovy::Finance::Apr
   end
 
   def calc
-    Croovy::Finance::Irr.new(payments).calc
+    CroovyFinance::Irr.new(payments).calc
   end
 
 

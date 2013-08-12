@@ -1,11 +1,11 @@
 require "minitest/autorun"
-require_relative "../../../lib/croovy"
+require_relative "../../lib/croovy_finance"
 
 
 class TestApr < Minitest::Unit::TestCase
 
   def test_apr
-    apr = Croovy::Finance::Apr.new(360, 1_044.50, 238_650)
+    apr = CroovyFinance::Apr.new(360, 1_044.50, 238_650)
     result = apr.calc
 
     assert_in_delta 0.002745656227846, result, 0.0000001
@@ -29,7 +29,7 @@ class TestApr < Minitest::Unit::TestCase
     examples.each do |example|
       periods, payment, value, expected_times_12 = example
 
-      result = Croovy::Finance::Apr.new(periods, payment, value).calc * 12
+      result = CroovyFinance::Apr.new(periods, payment, value).calc * 12
 
       assert_in_delta expected_times_12, result, 0.000001
     end

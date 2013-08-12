@@ -2,7 +2,7 @@ require_relative "secant"
 require_relative "npv"
 
 
-class Croovy::Finance::Irr
+class CroovyFinance::Irr
 
   # Calculate the Internal Rate of Return for a loan
   #
@@ -17,14 +17,14 @@ class Croovy::Finance::Irr
     r_1 ||= r_1_guess
     r_2 ||= r_2_guess
 
-    Croovy::Finance::Secant.new.solve(npv, r_1, r_2)
+    CroovyFinance::Secant.new.solve(npv, r_1, r_2)
   end
 
 
   private
 
   def npv
-    @npv ||= Croovy::Finance::Npv.new(@payments)
+    @npv ||= CroovyFinance::Npv.new(@payments)
   end
 
   def r_1_guess
@@ -53,7 +53,7 @@ class Croovy::Finance::Irr
   end
 
   def npv_1_in
-    @npv_1_in ||= Croovy::Finance::Npv.new(@payments[1..-1])
+    @npv_1_in ||= CroovyFinance::Npv.new(@payments[1..-1])
   end
 
 end

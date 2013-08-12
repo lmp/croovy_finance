@@ -1,4 +1,4 @@
-class Croovy::Finance::Npv
+class CroovyFinance::Npv
 
   # Calculate the Net Present Value of a time series of cash flows.
   #
