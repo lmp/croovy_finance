@@ -26,11 +26,12 @@ class TestApr < Minitest::Unit::TestCase
              [360, -4_824.59, 1_500_000.00, 0.009999999999996, 1e-6]]
 
     edges.each do |edge|
-      periods, payment, value, expected_times_12, delta = edge
+      periods, payment, value, expected_annual, delta = edge
 
-      result = CroovyFinance::Apr.new(periods, payment, value).calc * 12
+      result = CroovyFinance::Apr.new(periods, payment, value).calc
+      result_annual = result * 12
 
-      assert_in_delta expected_times_12, result, delta, edge
+      assert_in_delta expected_annual, result_annual, delta, edge
     end
   end
 
@@ -50,11 +51,12 @@ class TestApr < Minitest::Unit::TestCase
                 [360,	-1_013.37,	200_000,	0.044999947856313]]
 
     examples.each do |example|
-      periods, payment, value, expected_times_12 = example
+      periods, payment, value, expected_annual = example
 
-      result = CroovyFinance::Apr.new(periods, payment, value).calc * 12
+      result = CroovyFinance::Apr.new(periods, payment, value).calc
+      result_annual = result * 12
 
-      assert_in_delta expected_times_12, result, 1e-6
+      assert_in_delta expected_annual, result_annual, 1e-6
     end
   end
 
