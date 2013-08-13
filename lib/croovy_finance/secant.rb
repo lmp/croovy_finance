@@ -10,7 +10,7 @@ class CroovyFinance::Secant
   #
   # See http://en.wikipedia.org/wiki/Secant_method
   #     http://mathworld.wolfram.com/SecantMethod.html
-  def initialize(convergence_difference=0.0000001)
+  def initialize(convergence_difference=1e-7)
     @convergence_difference = convergence_difference
   end
 

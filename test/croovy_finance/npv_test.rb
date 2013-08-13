@@ -19,7 +19,7 @@ class TestNpv < Minitest::Unit::TestCase
                                   132_332,
                                   166_047])
 
-    assert_in_delta 59_832.766488911, npv.call(0.1), 0.0000000001
+    assert_in_delta 59_832.766488911, npv.call(0.1), 1e-10
   end
 
 end
