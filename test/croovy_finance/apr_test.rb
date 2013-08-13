@@ -8,7 +8,30 @@ class TestApr < Minitest::Unit::TestCase
     apr = CroovyFinance::Apr.new(360, 1_044.50, 238_650)
     result = apr.calc
 
-    assert_in_delta 0.002745656227846, result, 0.0000001
+    assert_in_delta 0.002745656227846, result, 1e-7
+  end
+
+  def test_edges
+    edges = [[180, -191.25, 25_000.00, 0.044999999999998, 1e-5],
+             [180, -349.90, 25_000.00, 0.15, 1e-5],
+             [180, -149.62, 25_000.00, 0.009999999999999, 1e-5],
+             [360, -126.67, 25_000.00, 0.044999999999122, 1e-5],
+             [360, -316.11, 25_000.00, 0.15, 1e-5],
+             [360, -80.41, 25_000.00, 0.009999999999996, 1e-6],
+             [180, -11_474.90, 1_500_000.00, 0.044999999999998, 1e-6],
+             [180, -20_993.81, 1_500_000.00, 0.15, 1e-6],
+             [180, -8_977.42, 1_500_000.00, 0.009999999999999, 1e-6],
+             [360, -7_600.28, 1_500_000.00, 0.044999999999122, 1e-6],
+             [360, -18_966.66, 1_500_000.00, 0.15, 1e-6],
+             [360, -4_824.59, 1_500_000.00, 0.009999999999996, 1e-6]]
+
+    edges.each do |edge|
+      periods, payment, value, expected_times_12, delta = edge
+
+      result = CroovyFinance::Apr.new(periods, payment, value).calc * 12
+
+      assert_in_delta expected_times_12, result, delta, edge
+    end
   end
 
   def test_apr_vs_calculations_spreadsheet
@@ -31,7 +54,7 @@ class TestApr < Minitest::Unit::TestCase
 
       result = CroovyFinance::Apr.new(periods, payment, value).calc * 12
 
-      assert_in_delta expected_times_12, result, 0.000001
+      assert_in_delta expected_times_12, result, 1e-6
     end
   end
 
