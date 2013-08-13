@@ -2,6 +2,7 @@ require_relative "irr"
 
 
 class CroovyFinance::Apr
+  MONTHS_IN_YEAR = 12
 
   # Calculate the APR for a loan
   #
@@ -20,11 +21,15 @@ class CroovyFinance::Apr
   end
 
   def calc
-    CroovyFinance::Irr.new(payments).calc
+    periodic_to_annual(CroovyFinance::Irr.new(payments).calc)
   end
 
 
   private
+
+  def periodic_to_annual(rate)
+    rate * MONTHS_IN_YEAR
+  end
 
   def payments
     [@loan_amount, *([@payment] * @periods)]
