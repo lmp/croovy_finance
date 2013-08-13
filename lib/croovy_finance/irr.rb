@@ -27,6 +27,13 @@ class CroovyFinance::Irr
     @npv ||= CroovyFinance::Npv.new(@payments)
   end
 
+  # Accuracy issues can often be traced to the values used for r_1 and r_2. If
+  # you're seeing such issues, consider supplying your own r_1 and r_2, or
+  # review the calculations presented below. They have been copied (hopefully
+  # correctly) from the wikipedia article
+  # (http://en.wikipedia.org/wiki/Internal_rate_of_return), though the author
+  # admits to having no understanding of their origin or the theory behind
+  # them.
   def r_1_guess
     cap_a_over_abs_cap_c_0 ** (2 / @payments.size.to_f) - 1
   end
