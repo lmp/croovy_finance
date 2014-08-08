@@ -10,12 +10,12 @@ class CroovyFinance::Npv
   end
 
   def call(rate)
-    exp = 1.0
     factor = 1.0 + rate
+    accum_factor = 1.0
 
-    @payments.map do |pmt|
-      pmt / (factor ** exp).tap {exp += 1.0}
-    end.reduce(:+)
+    @payments.inject(0.0) do |result, pmt|
+      result + pmt / (accum_factor *= factor)
+    end
   end
 
 end
